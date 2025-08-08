@@ -24,19 +24,25 @@
   background-color: #fefefe;
   margin: 15% auto;
   /* 15% from the top and centered */
-  padding: 20px;
+  padding: 25px;
   border: 1px solid #888;
   width: 80%;
-  height: 60%;
+  height: 40%;
   /* Could be more or less, depending on screen size */
-  
+}
+
+.modal-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
 }
 
 /* The Close Button */
 .close {
   color: #aaa;
   float: right;
-  font-size: 28px;
+  font-size: 48px;
   font-weight: bold;
 }
 
@@ -51,10 +57,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 50px;
 }
 
-.img img{
+.img
+img {
   width: 30%;
   height: 30%;
   object-fit: contain;
+}
+
+.img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
