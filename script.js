@@ -1,5 +1,3 @@
-
-
 //Play Game Modal
 //DomMan 
 const modal = document.getElementById('myModal');
@@ -31,7 +29,7 @@ const humanChoice = document.getElementById('humanChoice');
 // Each img has same function as eachother
 const scissors = document.getElementById('scissors');
 scissors.onclick = function () {
-  getHumanChoice = 'scissors';
+  getHumanChoice = 'You chose scissors';
   modal.style.display = "none";
   humanChoice.innerHTML = `${getHumanChoice}`;
   getComputerChoice();
@@ -39,7 +37,7 @@ scissors.onclick = function () {
 }
 const paper = document.getElementById('paper');
 paper.onclick = function () {
-  getHumanChoice = 'paper';
+  getHumanChoice = 'You chose paper';
   modal.style.display = "none";
   humanChoice.innerHTML = `${getHumanChoice}`;
   getComputerChoice();
@@ -47,7 +45,7 @@ paper.onclick = function () {
 }
 const rock = document.getElementById('rock');
 rock.onclick = function () {
-  getHumanChoice = 'rock';
+  getHumanChoice = 'You chose rock';
   modal.style.display = "none";
   humanChoice.innerHTML = `${getHumanChoice}`;
   getComputerChoice();
@@ -67,21 +65,34 @@ function getComputerChoice() {
 
   if (randomNumber === 3) {
     ComputerChoice = 'rock';
-    computerChoice.innerHTML = `${ComputerChoice}`;
+    computerChoice.innerHTML = `Computer chose ${ComputerChoice}`;
     console.log('3');
   } else if (randomNumber === 2) {
     ComputerChoice = 'paper';
-    computerChoice.innerHTML = `${ComputerChoice}`;
+    computerChoice.innerHTML = `Computer chose ${ComputerChoice}`;
     console.log('2');
 
   } else if (randomNumber === 1) {
     ComputerChoice = 'scissors';
-    computerChoice.innerHTML = `${ComputerChoice}`;
+    computerChoice.innerHTML = `Computer chose ${ComputerChoice}`;
     console.log('1');
   }
   console.log(`computer choice is set to ${ComputerChoice}`)
   return ComputerChoice
 }
 
+// Establish and Display Scores 
+let human = 0;
+let computer = 0;
+const humanScore = document.querySelector('.humanScore');
+humanScore.innerHTML = `Youre Score = ${human}`;
+const computerScore = document.querySelector('.computerScore');
+computerScore.innerHTML = `Computers Score = ${computer}`;
 
 
+// Need to write logic for who wins rounds
+// Computer chooses x and human choosed y. Score updates +1 
+
+// Need to write logic for who wins game 
+// If Computer or Human score = 5 reset rounds and variables to start/empty
+// Want to do a pop up modal stating the winner. when the user clicks the X or outside of modal the game resets 
