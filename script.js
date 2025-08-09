@@ -1,4 +1,5 @@
 
+
 //Play Game Modal
 //DomMan 
 const modal = document.getElementById('myModal');
@@ -23,46 +24,64 @@ window.onclick = function (event) {
 // Establish humanChoice as null
 let getHumanChoice = null;
 
-// Visual of humans choice changing 
-const choice = document.getElementById('choice')
+// Visual of human choice changing 
+const humanChoice = document.getElementById('humanChoice');
 
-// Onclick of img. Change humanChoice to img selected. Close Modal. Change choice html to the selected answer.
+// Onclick of img. Change humanChoice to img selected. Run getComputerChoice. Close Modal. Change choice html to the selected answer.
 // Each img has same function as eachother
-const scissors = document.getElementById('scissors')
-scissors.onclick = function(){
-  let getHumanChoice = 'scissors'
+const scissors = document.getElementById('scissors');
+scissors.onclick = function () {
+  getHumanChoice = 'scissors';
   modal.style.display = "none";
-  choice.innerHTML = `${getHumanChoice}`
+  humanChoice.innerHTML = `${getHumanChoice}`;
+  getComputerChoice();
   return console.log(`human choice is set to ${getHumanChoice}`)
 }
-const paper = document.getElementById('paper')
-paper.onclick = function(){
- let getHumanChoice = 'paper'
+const paper = document.getElementById('paper');
+paper.onclick = function () {
+  getHumanChoice = 'paper';
   modal.style.display = "none";
-  choice.innerHTML = `${getHumanChoice}`
+  humanChoice.innerHTML = `${getHumanChoice}`;
+  getComputerChoice();
   return console.log(`human choice is set to ${getHumanChoice}`)
 }
-const rock = document.getElementById('rock')
-rock.onclick = function(){
- let getHumanChoice = 'rock'
+const rock = document.getElementById('rock');
+rock.onclick = function () {
+  getHumanChoice = 'rock';
   modal.style.display = "none";
-  choice.innerHTML = `${getHumanChoice}`
+  humanChoice.innerHTML = `${getHumanChoice}`;
+  getComputerChoice();
   return console.log(`human choice is set to ${getHumanChoice}`)
 }
+
+// Establish ComputerChoice as null
+let ComputerChoice = null;
+const computerChoice = document.getElementById('computerChoice');
 
 // Computer Choice Function
 function getComputerChoice() {
   function getRandomNumber() {
     return Math.floor(Math.random() * 3) + 1;
   }
-  if (getRandomNumber() === 3) {
-    console.log('three')
-  } else if (getRandomNumber() === 2) {
-    console.log('two')
-  } else if (getRandomNumber() === 1) {
-    console.log('one')
+  let randomNumber = getRandomNumber();
+
+  if (randomNumber === 3) {
+    ComputerChoice = 'rock';
+    computerChoice.innerHTML = `${ComputerChoice}`;
+    console.log('3');
+  } else if (randomNumber === 2) {
+    ComputerChoice = 'paper';
+    computerChoice.innerHTML = `${ComputerChoice}`;
+    console.log('2');
+
+  } else if (randomNumber === 1) {
+    ComputerChoice = 'scissors';
+    computerChoice.innerHTML = `${ComputerChoice}`;
+    console.log('1');
   }
+  console.log(`computer choice is set to ${ComputerChoice}`)
+  return ComputerChoice
 }
-getComputerChoice();
+
 
 
