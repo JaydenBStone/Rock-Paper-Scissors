@@ -3,95 +3,56 @@
 const modal = document.getElementById('myModal');
 const myBtn = document.getElementById('myBtn');
 const span = document.getElementsByClassName('close')[0];
-const humanScore = document.querySelector('.humanScore');
-const computerScore = document.querySelector('.computerScore');
-const choices = document.querySelectorAll('.choice')
 
-// Display modal onclick "modal.style.display = 'block';"
+const choices = document.querySelectorAll('.choice')
+const humanChoiceDisplay = document.getElementById('humanChoice');
+const computerChoiceDisplay = document.getElementById('computerChoice');
+
+const scoreBoard = document.querySelector('.scoreBoard')
+const humanScoreDisplay= document.querySelector('.humanScore');
+const computerScoreDisplay = document.querySelector('.computerScore');
+
+
+
+
+// Establish Variables
+let human = 0;
+let computer = 0;
+let computerChoice = '';
+let humanChoice = '';
+
+
+// Open Modal, Modal Control
 myBtn.onclick = function () {
   modal.style.display = 'block';
 }
-// Close modal onclick of span(x) " modal.style.display = "none";"
+// Close modal 
 span.onclick = function () {
   modal.style.display = "none";
 }
-// Close modal if click outside modal window " modal.style.display = "none";"
+// Close modal if click outside modal window 
 window.onclick = function (event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
 }
 
-// Establish and Display Scores 
-let human = 0;
-let computer = 0;
-
-humanScore.innerHTML = `Youre Score = ${human}`;
-computerScore.innerHTML = `Computers Score = ${computer}`;
-
-// Establish humanChoice as null
-let getHumanChoice = '';
-
-
-
-
+// Set humanChoice 
+choices.forEach(choice => {
+  choice.addEventListener('click', () => {
+    humanChoice = choice.dataset.value;
+    modal.style.display = "none";
+    humanChoiceDisplay.innerHTML = `You chose ${humanChoice}`;
+    getComputerChoice();
+    Score();
+    console.log(`human choice is set to ${humanChoice}`);
+  });
+});
 
 
 
 
-
-
-
-
-// Visual of human choice changing 
-const humanChoice = document.getElementById('humanChoice');
-
-// Onclick of img. Change humanChoice to img selected. Run getComputerChoice. Close Modal. Change choice html to the selected answer.
-// Each img has same function as eachother
-const scissors = document.getElementById('scissors');
-scissors.onclick = function () {
-  getHumanChoice = 'scissors';
-  modal.style.display = "none";
-  humanChoice.innerHTML = `You chose ${getHumanChoice}`;
-  getComputerChoice();
-  Score();
-  return console.log(`human choice is set to ${getHumanChoice}`)
-}
-const paper = document.getElementById('paper');
-paper.onclick = function () {
-  getHumanChoice = 'paper';
-  modal.style.display = "none";
-  humanChoice.innerHTML = `You chose ${getHumanChoice}`;
-  getComputerChoice();
-  Score();
-  return console.log(`human choice is set to ${getHumanChoice}`)
-}
-const rock = document.getElementById('rock');
-rock.onclick = function () {
-  getHumanChoice = 'rock';
-  modal.style.display = "none";
-  humanChoice.innerHTML = `You chose ${getHumanChoice}`;
-  getComputerChoice();
-  Score();
-  return console.log(`human choice is set to ${getHumanChoice}`)
-}
-
-
-
-
-
-
-
-
-
-
-
-
-// Establish ComputerChoice as null
-let ComputerChoice = '';
-const computerChoice = document.getElementById('computerChoice');
-
-// Computer Choice Function
+// Set computerChoice
 function getComputerChoice() {
   function getRandomNumber() {
     return Math.floor(Math.random() * 3) + 1;
@@ -99,68 +60,62 @@ function getComputerChoice() {
   let randomNumber = getRandomNumber();
 
   if (randomNumber === 3) {
-    ComputerChoice = 'rock';
-    computerChoice.innerHTML = `Computer chose ${ComputerChoice}`;
+    computerChoice = 'rock';
+    computerChoiceDisplay.innerHTML = `Computer chose ${computerChoice}`;
   } else if (randomNumber === 2) {
-    ComputerChoice = 'paper';
-    computerChoice.innerHTML = `Computer chose ${ComputerChoice}`;
+    computerChoice = 'paper';
+    computerChoiceDisplay.innerHTML = `Computer chose ${computerChoice}`;
   } else if (randomNumber === 1) {
-    ComputerChoice = 'scissors';
-    computerChoice.innerHTML = `Computer chose ${ComputerChoice}`;
+    computerChoice = 'scissors';
+    computerChoiceDisplay.innerHTML = `Computer chose ${computerChoice}`;
   }
-  console.log(`computer choice is set to ${ComputerChoice}`)
-  return ComputerChoice
+  console.log(`computer choice is set to ${computerChoice}`)
+  return computerChoice
 }
 
+// Change score 
 function Score() {
-  if (getHumanChoice === ComputerChoice) {
+  if (humanChoice === computerChoice) {
     console.log("It's a tie!");
     return;
   }
   if (
-    (getHumanChoice === 'rock' && ComputerChoice === 'scissors') ||
-    (getHumanChoice === 'scissors' && ComputerChoice === 'paper') ||
-    (getHumanChoice === 'paper' && ComputerChoice === 'rock')
+    (humanChoice === 'rock' && computerChoice === 'scissors') ||
+    (humanChoice === 'scissors' && computerChoice === 'paper') ||
+    (humanChoice === 'paper' && computerChoice === 'rock')
   ) {
     human++;
-    console.log('human wins round')
-    console.log(human)
   } else {
     computer++;
-    console.log('computer wins round')
-    console.log(computer)
   }
-  humanScore.innerHTML = `Youre Score = ${human}`;
-  computerScore.innerHTML = `Computers Score = ${computer}`;
-
+  humanScoreDisplay.innerHTML = `Youre Score = ${human}`;
+  computerScoreDisplay.innerHTML = `Computers Score = ${computer}`;
   checkWinner();
 }
 
-
+// Check winner 
 function checkWinner() {
-  if (human === 5 || computer === 5) {
-    let winner = human === 5 ? "Human Wins!" : 'Computer Wins!';
+  if (human === 3 || computer === 3) {
+    let winner = human === 3 ? "Human Wins!" : 'Computer Wins!';
     alert(winner);
     resetGame()
   }
 }
 
-
+// Reset game
 function resetGame() {
   human = 0;
   computer = 0;
+  humanChoiceDisplay.innerHTML = '';
+  computerChoiceDisplay.innerHTML = '';
+  humanScoreDisplay.innerHTML = '';
+  computerScoreDisplay.innerHTML = '';
 }
 
 
 
 
-// choices.forEach(choice => {
-//   choice.addEventListener('click', () => {
-//     getHumanChoice = choice.dataset.value;
-//     modal.style.display = "none";
-//     humanChoice.innerHTML = `You chose ${getHumanChoice}`;
-//     getComputerChoice();
-//     Score();
-//     console.log(`human choice is set to ${getHumanChoice}`);
-//   });
-// });
+
+
+
+
