@@ -10,7 +10,8 @@
 </head>
 
 <body>
-  <div>
+  <div class="header">Rock - Paper - Scissors </div>
+  <div class="game">
     <button id="myBtn">Play Game</button>
     <div id="myModal" class="modal">
       <div class="modal-content">
@@ -18,25 +19,30 @@
         <p class="modal-title">Choose: Rock, Paper or Scissors</p>
         <div class="modal-img">
           <div class="img">
-            <img id="paper" class="choice" data-value="paper" src="img/paper.png">
+            <img id="paper" class="choice" data-value="Paper" src="img/paper.png">
           </div>
-           <div class="img">
-            <img id="rock" class="choice" data-value="rock" src="img/rock.png">
+          <div class="img">
+            <img id="rock" class="choice" data-value="Rock" src="img/rock.png">
           </div>
-           <div class="img">
-            <img id="scissors" class="choice" data-value="scissors" src="img/scissors.png">
+          <div class="img">
+            <img id="scissors" class="choice" data-value="Scissors" src="img/scissors.png">
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="scoreBoard">
-    <div class="humanScore"></div>
-    <div class="computerScore"></div>
-    <p id="humanChoice"></p>
-    <p id="computerChoice"></p>
+  <div class="scoreBoard display">
+    <div class="choicesDisplay">
+      <div id="humanChoice" class="display"></div>
+      <div id="computerChoice" class="display"></div>
+    </div>
+    <div class="roundState"></div>
+    <div class="scoreDisplay">
+      <div class="humanScore display"></div>
+      <div class="computerScore display"></div>
+    </div>
   </div>
-  
+
 </body>
 
 </html>

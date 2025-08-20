@@ -60,8 +60,7 @@
   padding-top: 50px;
 }
 
-.img
-img {
+.img img {
   width: 30%;
   height: 30%;
   object-fit: contain;
@@ -72,3 +71,51 @@ img {
   justify-content: center;
   align-items: center;
 }
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
+  width: 100%;
+}
+
+.game {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.scoreBoard{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 20px 0px;
+}
+
+.display {
+  padding: 20px 0px;
+}
+
+.choicesDisplay {
+  display: flex;
+  width: 30%;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  
+}
+
+.scoreDisplay {
+  display: flex;
+  width: 30%;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+

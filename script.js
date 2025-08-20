@@ -9,10 +9,10 @@ const humanChoiceDisplay = document.getElementById('humanChoice');
 const computerChoiceDisplay = document.getElementById('computerChoice');
 
 const scoreBoard = document.querySelector('.scoreBoard')
-const humanScoreDisplay= document.querySelector('.humanScore');
+const humanScoreDisplay = document.querySelector('.humanScore');
 const computerScoreDisplay = document.querySelector('.computerScore');
 
-
+const roundStateDisplay = document.querySelector('.roundState')
 
 
 // Establish Variables
@@ -25,6 +25,7 @@ let humanChoice = '';
 // Open Modal, Modal Control
 myBtn.onclick = function () {
   modal.style.display = 'block';
+  btnTextContent()
 }
 // Close modal 
 span.onclick = function () {
@@ -34,6 +35,12 @@ span.onclick = function () {
 window.onclick = function (event) {
   if (event.target == modal) {
     modal.style.display = "none";
+  }
+}
+
+function btnTextContent() {
+  if (myBtn.textContent === 'Play Game') {
+    myBtn.textContent = 'Play Round'
   }
 }
 
@@ -49,24 +56,24 @@ choices.forEach(choice => {
   });
 });
 
-
+function getRandomNumber() {
+    return Math.floor(Math.random() * 3) + 1;
+  }
 
 
 // Set computerChoice
 function getComputerChoice() {
-  function getRandomNumber() {
-    return Math.floor(Math.random() * 3) + 1;
-  }
+  
   let randomNumber = getRandomNumber();
 
   if (randomNumber === 3) {
-    computerChoice = 'rock';
+    computerChoice = 'Rock';
     computerChoiceDisplay.innerHTML = `Computer chose ${computerChoice}`;
   } else if (randomNumber === 2) {
-    computerChoice = 'paper';
+    computerChoice = 'Paper';
     computerChoiceDisplay.innerHTML = `Computer chose ${computerChoice}`;
   } else if (randomNumber === 1) {
-    computerChoice = 'scissors';
+    computerChoice = 'Scissors';
     computerChoiceDisplay.innerHTML = `Computer chose ${computerChoice}`;
   }
   console.log(`computer choice is set to ${computerChoice}`)
@@ -76,17 +83,19 @@ function getComputerChoice() {
 // Change score 
 function Score() {
   if (humanChoice === computerChoice) {
-    console.log("It's a tie!");
+    roundStateDisplay.innerHTML = "Its a Tie!";
     return;
   }
   if (
-    (humanChoice === 'rock' && computerChoice === 'scissors') ||
-    (humanChoice === 'scissors' && computerChoice === 'paper') ||
-    (humanChoice === 'paper' && computerChoice === 'rock')
+    (humanChoice === 'Rock' && computerChoice === 'Scissors') ||
+    (humanChoice === 'Scissors' && computerChoice === 'Paper') ||
+    (humanChoice === 'Paper' && computerChoice === 'Rock')
   ) {
     human++;
+    roundStateDisplay.innerHTML = `${humanChoice} beats ${computerChoice}, Human wins this round!`;
   } else {
     computer++;
+    roundStateDisplay.innerHTML = `${computerChoice} beats ${humanChoice}, Computer wins this round!`;
   }
   humanScoreDisplay.innerHTML = `Youre Score = ${human}`;
   computerScoreDisplay.innerHTML = `Computers Score = ${computer}`;
@@ -110,6 +119,8 @@ function resetGame() {
   computerChoiceDisplay.innerHTML = '';
   humanScoreDisplay.innerHTML = '';
   computerScoreDisplay.innerHTML = '';
+  myBtn.textContent = 'Play Game'
+  roundStateDisplay .innerHTML = '';
 }
 
 
