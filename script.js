@@ -1,8 +1,12 @@
 //Play Game Modal
-//DomMan 
+// DOM Elements 
 const modal = document.getElementById('myModal');
 const myBtn = document.getElementById('myBtn');
 const span = document.getElementsByClassName('close')[0];
+const humanScore = document.querySelector('.humanScore');
+const computerScore = document.querySelector('.computerScore');
+const choices = document.querySelectorAll('.choice')
+
 // Display modal onclick "modal.style.display = 'block';"
 myBtn.onclick = function () {
   modal.style.display = 'block';
@@ -18,9 +22,26 @@ window.onclick = function (event) {
   }
 }
 
+// Establish and Display Scores 
+let human = 0;
+let computer = 0;
+
+humanScore.innerHTML = `Youre Score = ${human}`;
+computerScore.innerHTML = `Computers Score = ${computer}`;
 
 // Establish humanChoice as null
-let getHumanChoice = null;
+let getHumanChoice = '';
+
+
+
+
+
+
+
+
+
+
+
 
 // Visual of human choice changing 
 const humanChoice = document.getElementById('humanChoice');
@@ -29,31 +50,45 @@ const humanChoice = document.getElementById('humanChoice');
 // Each img has same function as eachother
 const scissors = document.getElementById('scissors');
 scissors.onclick = function () {
-  getHumanChoice = 'You chose scissors';
+  getHumanChoice = 'scissors';
   modal.style.display = "none";
-  humanChoice.innerHTML = `${getHumanChoice}`;
+  humanChoice.innerHTML = `You chose ${getHumanChoice}`;
   getComputerChoice();
+  Score();
   return console.log(`human choice is set to ${getHumanChoice}`)
 }
 const paper = document.getElementById('paper');
 paper.onclick = function () {
-  getHumanChoice = 'You chose paper';
+  getHumanChoice = 'paper';
   modal.style.display = "none";
-  humanChoice.innerHTML = `${getHumanChoice}`;
+  humanChoice.innerHTML = `You chose ${getHumanChoice}`;
   getComputerChoice();
+  Score();
   return console.log(`human choice is set to ${getHumanChoice}`)
 }
 const rock = document.getElementById('rock');
 rock.onclick = function () {
-  getHumanChoice = 'You chose rock';
+  getHumanChoice = 'rock';
   modal.style.display = "none";
-  humanChoice.innerHTML = `${getHumanChoice}`;
+  humanChoice.innerHTML = `You chose ${getHumanChoice}`;
   getComputerChoice();
+  Score();
   return console.log(`human choice is set to ${getHumanChoice}`)
 }
 
+
+
+
+
+
+
+
+
+
+
+
 // Establish ComputerChoice as null
-let ComputerChoice = null;
+let ComputerChoice = '';
 const computerChoice = document.getElementById('computerChoice');
 
 // Computer Choice Function
@@ -66,33 +101,66 @@ function getComputerChoice() {
   if (randomNumber === 3) {
     ComputerChoice = 'rock';
     computerChoice.innerHTML = `Computer chose ${ComputerChoice}`;
-    console.log('3');
   } else if (randomNumber === 2) {
     ComputerChoice = 'paper';
     computerChoice.innerHTML = `Computer chose ${ComputerChoice}`;
-    console.log('2');
-
   } else if (randomNumber === 1) {
     ComputerChoice = 'scissors';
     computerChoice.innerHTML = `Computer chose ${ComputerChoice}`;
-    console.log('1');
   }
   console.log(`computer choice is set to ${ComputerChoice}`)
   return ComputerChoice
 }
 
-// Establish and Display Scores 
-let human = 0;
-let computer = 0;
-const humanScore = document.querySelector('.humanScore');
-humanScore.innerHTML = `Youre Score = ${human}`;
-const computerScore = document.querySelector('.computerScore');
-computerScore.innerHTML = `Computers Score = ${computer}`;
+function Score() {
+  if (getHumanChoice === ComputerChoice) {
+    console.log("It's a tie!");
+    return;
+  }
+  if (
+    (getHumanChoice === 'rock' && ComputerChoice === 'scissors') ||
+    (getHumanChoice === 'scissors' && ComputerChoice === 'paper') ||
+    (getHumanChoice === 'paper' && ComputerChoice === 'rock')
+  ) {
+    human++;
+    console.log('human wins round')
+    console.log(human)
+  } else {
+    computer++;
+    console.log('computer wins round')
+    console.log(computer)
+  }
+  humanScore.innerHTML = `Youre Score = ${human}`;
+  computerScore.innerHTML = `Computers Score = ${computer}`;
+
+  checkWinner();
+}
 
 
-// Need to write logic for who wins rounds
-// Computer chooses x and human choosed y. Score updates +1 
+function checkWinner() {
+  if (human === 5 || computer === 5) {
+    let winner = human === 5 ? "Human Wins!" : 'Computer Wins!';
+    alert(winner);
+    resetGame()
+  }
+}
 
-// Need to write logic for who wins game 
-// If Computer or Human score = 5 reset rounds and variables to start/empty
-// Want to do a pop up modal stating the winner. when the user clicks the X or outside of modal the game resets 
+
+function resetGame() {
+  human = 0;
+  computer = 0;
+}
+
+
+
+
+// choices.forEach(choice => {
+//   choice.addEventListener('click', () => {
+//     getHumanChoice = choice.dataset.value;
+//     modal.style.display = "none";
+//     humanChoice.innerHTML = `You chose ${getHumanChoice}`;
+//     getComputerChoice();
+//     Score();
+//     console.log(`human choice is set to ${getHumanChoice}`);
+//   });
+// });
